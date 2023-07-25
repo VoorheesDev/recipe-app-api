@@ -1,0 +1,25 @@
+---
+name: CI
+
+on: [push]
+
+jobs:
+  test-lint:
+    name: Test and lint
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Test
+        run: docker-compose run --rm app sh -c "python manage.py test"
+      - name: isort code formatting
+        run: docker-compose run --rm app sh -c "isort ."
+      - name: black code formatting
+        run: docker-compose run --rm app sh -c "black ."
+      - name: flake8 code linting
+        run: docker-compose run --rm app sh -c "flake8 ."
