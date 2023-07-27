@@ -11,3 +11,8 @@ exclude =
     venv,
     migrations,
     manage.py
+
+# Flake plugins:
+
+# flake8-bugbear
+extend-immutable-calls = pathlib.Path, Path, datetime.now, timezone.now, now

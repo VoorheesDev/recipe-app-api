@@ -1,0 +1,52 @@
+repos:
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: check-merge-conflict
+      - id: detect-aws-credentials
+        args: [ "--allow-missing-credentials" ]
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: name-tests-test
+        args: [ "--pytest-test-first" ]
+      - id: trailing-whitespace
+
+  - repo: https://github.com/psf/black
+    rev: 23.7.0
+    hooks:
+      - id: black
+        name: "Code Formatter (black)"
+        language_version: python3.10
+        exclude: '^.*/migrations/.*$'
+
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        args: ["--profile", "black", "--filter-files"]
+        name: "Code Formatter (isort)"
+        language_version: python3.10
+        types: [python]
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        name: "Code Linter (flake8)"
+        language_version: python3.10
+        types: [python]
+        exclude: '^.*/migrations/.*$'
+        additional_dependencies:
+          - flake8-bugbear==23.7.10
+
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.2.0
+    hooks:
+      - id: autoflake
+        types: [python]
+        args: ["--in-place", "--remove-all-unused-imports", "--remove-unused-variable"]
