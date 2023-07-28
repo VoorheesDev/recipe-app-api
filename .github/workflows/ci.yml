@@ -17,9 +17,5 @@ jobs:
         uses: actions/checkout@v3
       - name: Test
         run: docker-compose run --rm app sh -c "python manage.py test"
-      - name: isort code formatting
-        run: docker-compose run --rm app sh -c "isort ."
-      - name: black code formatting
-        run: docker-compose run --rm app sh -c "black ."
-      - name: flake8 code linting
+      - name: Lint
         run: docker-compose run --rm app sh -c "flake8 ."
