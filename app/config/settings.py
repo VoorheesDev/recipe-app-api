@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Installed apps
     "rest_framework",
+    "rest_framework.authtoken",
     "drf_spectacular",
     # Custom apps
     "core",
