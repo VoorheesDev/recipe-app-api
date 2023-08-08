@@ -45,6 +45,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     def __str__(self):
-        """Returns readable representation of the model."""
+        """Return readable representation of the model."""
 
         return f"User {self.id}: {self.email}"
