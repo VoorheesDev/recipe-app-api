@@ -17,7 +17,7 @@ def create_user(**params):
     return UserModel.objects.create_user(**params)
 
 
-class PublicUserApiTest(TestCase):
+class PublicUserAPITest(TestCase):
     """Test the public features of user API."""
 
     def setUp(self):
@@ -118,7 +118,7 @@ class PublicUserApiTest(TestCase):
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
-class PrivateUserApiTest(TestCase):
+class PrivateUserAPITest(TestCase):
     """Test API requests that require authentication."""
 
     def setUp(self):
