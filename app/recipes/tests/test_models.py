@@ -3,10 +3,16 @@ from decimal import Decimal
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from recipes.models import Recipe
+from recipes.models import Recipe, Tag
 
 
 UserModel = get_user_model()
+
+
+def create_user(email="test@ex.com", password="testpassword"):
+    """Create and return a new user."""
+
+    return UserModel.objects.create_user(email=email, password=password)
 
 
 class RecipeTest(TestCase):
@@ -28,3 +34,15 @@ class RecipeTest(TestCase):
         )
 
         self.assertEqual(str(recipe), recipe.title)
+
+
+class TagTest(TestCase):
+    """Test tag model."""
+
+    def test_create_tag(self):
+        """Test creating a tag is successful."""
+
+        user = create_user()
+        tag = Tag.objects.create(user=user, name="Tag1")
+
+        self.assertEqual(str(tag), tag.name)
